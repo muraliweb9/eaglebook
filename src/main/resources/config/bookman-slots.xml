@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/util 
+       http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+	
+	<bean id="hour11to12" class="me.synology.murali.eaglebook.model.HourOrHalfSlotImpl">
+		<constructor-arg value="SIXTY" />
+		<constructor-arg value="12:30" />
+		<constructor-arg value="11:00" />		
+	</bean>
+	
+	<bean id="hourTwoToThree" class="me.synology.murali.eaglebook.model.HourOrHalfSlotImpl">
+		<constructor-arg value="SIXTY" />
+		<constructor-arg value="14:30" />
+		<constructor-arg value="14:00" />		
+	</bean>
+	
+	<bean id="hourThreeToFour" class="me.synology.murali.eaglebook.model.HourOrHalfSlotImpl">
+		<constructor-arg value="SIXTY" />
+		<constructor-arg value="14:30" />
+		<constructor-arg value="15:00" />		
+	</bean>	
+
+	<bean id="hourFourToFive" class="me.synology.murali.eaglebook.model.HourOrHalfSlotImpl">
+		<constructor-arg value="SIXTY" />
+		<constructor-arg value="16:30" />
+		<constructor-arg value="16:00" />		
+	</bean>
+
+	<bean id="hourFiveToSix" class="me.synology.murali.eaglebook.model.HourOrHalfSlotImpl">
+		<constructor-arg value="SIXTY" />
+		<constructor-arg value="16:30" />
+		<constructor-arg value="17:00" />		
+	</bean>
+
+	<bean id="hourSixToSeven" class="me.synology.murali.eaglebook.model.HourOrHalfSlotImpl">
+		<constructor-arg value="SIXTY" />
+		<constructor-arg value="18:30" />
+		<constructor-arg value="18:00" />		
+	</bean>
+	
+	<bean id="hourSevenToEight" class="me.synology.murali.eaglebook.model.HourOrHalfSlotImpl">
+		<constructor-arg value="SIXTY" />
+		<constructor-arg value="18:30" />
+		<constructor-arg value="19:00" />		
+	</bean>
+	
+	<bean id="hourEightToNine" class="me.synology.murali.eaglebook.model.HourOrHalfSlotImpl">
+		<constructor-arg value="SIXTY" />
+		<constructor-arg value="18:30" />
+		<constructor-arg value="20:00" />		
+	</bean>
+	
+	<bean id="hourNineToTen" class="me.synology.murali.eaglebook.model.HourOrHalfSlotImpl">
+		<constructor-arg value="SIXTY" />
+		<constructor-arg value="20:30" />
+		<constructor-arg value="21:00" />		
+	</bean>
+	
+	<bean id="daybasedSlots" class="me.synology.murali.eaglebook.model.DayBasedSlots">
+		<constructor-arg value="true" />
+		<constructor-arg ref="firstDayBasedSlots" />
+		<constructor-arg ref="secondDayBasedSlots" />
+	</bean>
+	
+	<bean id="firstDayBasedSlots" class="java.util.HashMap">
+        <constructor-arg>
+            <map key-type="java.time.DayOfWeek">
+                <entry key="MONDAY"    value-ref="hourEightToNine"/>
+                <!--entry key="MONDAY"    value-ref="hourFourToFive"/-->
+                <entry key="TUESDAY"   value-ref="hourEightToNine"/>
+                <entry key="WEDNESDAY" value-ref="hourEightToNine"/>
+                <entry key="THURSDAY"  value-ref="hourSevenToEight"/>
+                <!--entry key="THURSDAY"  value-ref="hourTwoToThree"/-->
+                <entry key="FRIDAY"    value-ref="hourSixToSeven"/>
+                <entry key="SATURDAY"  value-ref="hourSixToSeven"/>
+                <entry key="SUNDAY"    value-ref="hourSixToSeven"/>
+            </map>
+        </constructor-arg>
+    </bean>
+	
+	<bean id="secondDayBasedSlots" class="java.util.HashMap">
+        <constructor-arg>
+            <map key-type="java.time.DayOfWeek">
+                <entry key="MONDAY"    value-ref="hourNineToTen"/>
+                <!--entry key="MONDAY"    value-ref="hourFiveToSix"/-->
+                <entry key="TUESDAY"   value-ref="hourNineToTen"/>
+                <entry key="WEDNESDAY" value-ref="hourNineToTen"/>
+                <entry key="THURSDAY"  value-ref="hourEightToNine"/>
+                <!--entry key="THURSDAY"  value-ref="hourThreeToFour"/-->
+                <entry key="FRIDAY"    value-ref="hourSevenToEight"/>
+                <entry key="SATURDAY"  value-ref="hourSevenToEight"/>
+                <entry key="SUNDAY"    value-ref="hourSevenToEight"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+</beans>

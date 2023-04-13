@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/utdepeil"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/util 
+       http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<context:annotation-config />
+	
+	<import resource="classpath:config/bookman-config.xml" />
+	<import resource="classpath:config/bookman-users.xml" />
+	<import resource="classpath:config/bookman-slots.xml" />
+	
+	<bean id="prepDate" class="java.lang.String">
+		<constructor-arg value="02/02/16" />
+	</bean>
+	
+	<bean id="bookingDate" class="java.lang.String">
+		<constructor-arg value="10/02/16" />
+	</bean>
+	
+	<bean id="timeSlot1" class="me.synology.murali.eaglebook.model.TimeSlotImpl">
+		<constructor-arg ref="bookingDate" />
+		<constructor-arg value="FIRST" />
+		<constructor-arg value="NEXT" />
+<!-- 		<property name="hourOrHalfSlot" ref="hourFiveToSix" /> -->
+	</bean>
+	
+	<bean id="timeSlot2" class="me.synology.murali.eaglebook.model.TimeSlotImpl">
+		<constructor-arg ref="bookingDate" />
+		<constructor-arg value="SECOND" />
+		<constructor-arg value="PREVIOUS" />
+<!-- 		<property name="hourOrHalfSlot" ref="hourEightToNine" /> -->
+	</bean>
+	
+	<bean id="booking1" class="me.synology.murali.eaglebook.model.BookingImpl">
+		<constructor-arg ref="configWithProxy" />
+		<constructor-arg ref="userSugumar" />
+		<constructor-arg ref="timeSlot1" />
+		<constructor-arg value="LOW" />
+		<constructor-arg ref="prepDate" />
+		<constructor-arg value="23:59:42" />
+		<constructor-arg value="20" />
+	</bean>
+
+	<bean id="booking2" class="me.synology.murali.eaglebook.model.BookingImpl">
+		<constructor-arg ref="configWithProxy" />
+		<constructor-arg ref="userWill" />
+		<constructor-arg ref="timeSlot1" />
+		<constructor-arg value="HIGH" />
+		<constructor-arg ref="prepDate" />
+		<constructor-arg value="23:59:44" />
+		<constructor-arg value="20" />
+	</bean>
+	<bean id="booking3" class="me.synology.murali.eaglebook.model.BookingImpl">
+		<constructor-arg ref="configWithProxy" />
+		<constructor-arg ref="userJitesh" />
+		<constructor-arg ref="timeSlot2" />
+		<constructor-arg value="LOW" />
+		<constructor-arg ref="prepDate" />
+		<constructor-arg value="23:59:43" />
+		<constructor-arg value="20" />		
+	</bean>
+	<bean id="booking4" class="me.synology.murali.eaglebook.model.BookingImpl">
+		<constructor-arg ref="configWithProxy" />
+		<constructor-arg ref="userRohan" />
+		<constructor-arg ref="timeSlot2" />
+		<constructor-arg value="HIGH" />
+		<constructor-arg ref="prepDate" />
+		<constructor-arg value="23:59:45" />
+		<constructor-arg value="20" />		
+	</bean>
+
+</beans>
